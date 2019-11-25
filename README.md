@@ -17,4 +17,24 @@
 ## 3.Python使用Thrift连接HBASE进行操作
     https://blog.csdn.net/m0_37634723/article/details/79191420
 
+## 4.程序启动
+    spark -submit --master yarn \
+    --deploy-mode client \
+    --queue='queue_01' \
+    --archives /*/python2env.zip#python2env \
+    --conf spark.pyspark.driver.python=/*/python2.7/bin/python2.7 \
+    --conf spark.pyspark.python=/python2env/python2.7/bin/python2.7 \
+    --conf spark.yarn.executor.memoryOverhead=8G \
+    --conf "spark.executor.extraJavaOptions=-XX:+PrintGCTimeStamps -XX:MaxDirectMemorySize=4096m" \
+    --conf spark.executor.instances=1 \
+    --conf spark.default.parallelism=1 \
+    --conf spark.speculation=false \
+    --conf spark.speculation.auantile=0.2 \
+    --conf spark.speculation.multiplier=1.5 \
+    --executor-memory 20G \
+    --num-executors 50 \
+    --executor-cores 3 \
+    --driver-memory 1G \
+    sift.py
+    
 
